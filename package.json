@@ -1,0 +1,10 @@
+{
+  "name": "carafe-bundler",
+  "version": "0.1.0",
+  "description": "Bundler for carafe files",
+  "bin": {
+    "render-carafe-bundle": "bin/render-carafe-bundle.js"
+  },
+  "author": "Soliant Consulting",
+  "license": "MIT"
+}

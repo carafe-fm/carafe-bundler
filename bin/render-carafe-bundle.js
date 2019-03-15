@@ -19,7 +19,7 @@ const html = renderer.render(
 const outputDirectory = path.dirname(path.resolve(outputFilename));
 
 if (! fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(path.dirname(path.resolve(outputFilename)), {recursive: true});
+    fs.mkdirSync(outputDirectory, {recursive: true});
 }
 
 fs.writeFileSync(outputFilename, html);

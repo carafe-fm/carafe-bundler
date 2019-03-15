@@ -11,8 +11,10 @@ const outputFilename = process.argv[2] || 'bundle.json';
 const bundleConfig = new BundleConfig(process.cwd());
 const sourceCompiler = new SourceCompiler(bundleConfig, new Renderer());
 
+const outputDirectory = path.dirname(path.resolve(outputFilename));
+
 if (! fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(path.dirname(path.resolve(outputFilename)), {recursive: true});
+    fs.mkdirSync(outputDirectory, {recursive: true});
 }
 
 fs.writeFileSync(outputFilename, JSON.stringify(sourceCompiler.compileBundle()));

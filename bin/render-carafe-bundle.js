@@ -2,6 +2,7 @@
 
 const Renderer = require('../src/renderer.js');
 const fs = require('fs');
+const path = require('path');
 
 const inputFilename = process.argv[2] || 'bundle.json';
 const outputFilename = process.argv[3] || 'bundle.html';
@@ -14,5 +15,11 @@ const html = renderer.render(
     bundle.config,
     bundle.data
 );
+
+const outputDirectory = path.dirname(path.resolve(outputFilename));
+
+if (! fs.existsSync(outputDirectory)) {
+    fs.mkdirSync(path.dirname(path.resolve(outputFilename)), {recursive: true});
+}
 
 fs.writeFileSync(outputFilename, html);

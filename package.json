@@ -1,5 +1,5 @@
 {
-  "name": "carafe-bundler",
+  "name": "@soliantconsulting/carafe-bundler",
   "version": "0.1.0",
   "description": "Bundler for carafe files",
   "bin": {

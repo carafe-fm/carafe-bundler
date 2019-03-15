@@ -7,9 +7,17 @@ class CarafeRenderer
             let value = '';
 
             if (! config[name].isData) {
-                value = String(config[name].value);
+                value = config[name].value;
             } else {
-                value = String(data[name]);
+                value = data[name];
+            }
+
+            switch (typeof value) {
+                case 'object':
+                    value = JSON.stringify(value);
+
+                default:
+                    value = String(value);
             }
 
             const variableName = String(delimiter + name + delimiter).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');

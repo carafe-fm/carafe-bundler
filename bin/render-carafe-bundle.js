@@ -3,8 +3,8 @@
 const Renderer = require('../src/renderer.js');
 const fs = require('fs');
 
-const inputFilename = process.argv[2];
-const outputFilename = process.argv[3];
+const inputFilename = process.argv[2] || 'bundle.json';
+const outputFilename = process.argv[3] || 'bundle.html';
 
 const renderer = new Renderer();
 const bundle = JSON.parse(fs.readFileSync(inputFilename, 'utf8'));

@@ -1,0 +1,9 @@
+{
+    "doneColor": "rgba(255,255,255,1)",
+    "filename": "WidgetStudio",
+    "gaugeValue": 0,
+    "initialValue": "00:00:15",
+    "scriptname": "",
+    "start": 15,
+    "target": 10
+}

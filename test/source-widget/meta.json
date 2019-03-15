@@ -1,0 +1,22 @@
+{
+    "about": "",
+    "bookend": "__",
+    "bridgeAPIMethods": "",
+    "category": "Utility",
+    "creator": "C. Lind",
+    "dataMerge": "",
+    "deployWarning": "",
+    "description": "A simple countdown or count up timer. \r\rA script can be specified to run when the timer reaches the target.",
+    "hashLoad": "",
+    "id": "67070A77-1AB1-4E9B-9F16-29CEB742C75E",
+    "imported": "1",
+    "indexLocation": "",
+    "libraryID": "",
+    "name": "Timer",
+    "offlineCompatibile": "1",
+    "references": "[\"https://albert-gonzalez.github.io/easytimer.js/\"]",
+    "returnedData": "",
+    "urlLocation": "https://widgetstudio.io/Demos/WidgetStudio_Timer_v1_0.json",
+    "version": "1.0",
+    "windowsTested": "1"
+}

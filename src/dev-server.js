@@ -22,31 +22,42 @@ class DevServer
     }
 
     start() {
-        this.server = http.createServer((req, res) => {
-            res.writeHead(200, {
-                'Content-Type': 'text/html; charset=utf-8',
-            });
-            res.write(this.html);
-            res.end();
-        });
-
-        this.server.addListener('upgrade', (request, socket, head) => {
-            if (! WebSocket.isWebSocket(request)) {
-                return;
-            }
-
-            const ws = new WebSocket(request, socket, head);
-
-            ws.on('close', () => {
-                this.clients = this.clients.filter(client => {
-                    return client !== ws;
+        return new Promise((resolve, reject) => {
+            this.server = http.createServer((req, res) => {
+                res.writeHead(200, {
+                    'Content-Type': 'text/html; charset=utf-8',
                 });
+                res.write(this.html);
+                res.end();
             });
 
-            this.clients.push(ws);
-        });
+            this.server.addListener('upgrade', (request, socket, head) => {
+                if (! WebSocket.isWebSocket(request)) {
+                    return;
+                }
 
-        this.server.listen(this.port);
+                const ws = new WebSocket(request, socket, head);
+
+                ws.on('close', () => {
+                    this.clients = this.clients.filter(client => {
+                        return client !== ws;
+                    });
+                });
+
+                this.clients.push(ws);
+            });
+
+            this.server.addListener('error', () => {
+                this.server.close();
+                reject();
+            });
+
+            this.server.addListener('listening', () => {
+                resolve();
+            });
+
+            this.server.listen(this.port);
+        });
     }
 
     update() {

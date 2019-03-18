@@ -9,13 +9,14 @@ class CarafeSourceCompiler
     }
 
     compileBundle() {
+        const template = fs.readFileSync(this.bundleConfig.templateFilename, 'utf8');
         const config = JSON.parse(fs.readFileSync(this.bundleConfig.configFilename, 'utf8'));
         const data = JSON.parse(fs.readFileSync(this.bundleConfig.dataFilename, 'utf8'));
         const meta = JSON.parse(fs.readFileSync(this.bundleConfig.metaFilename, 'utf8'));
         const preview = Buffer(fs.readFileSync(this.bundleConfig.previewFilename, 'utf8')).toString('base64');
 
         const result = {
-            html: this.compileHtml(),
+            html: template,
             preview: preview,
             previewName: path.basename(this.bundleConfig.previewFilename),
             config: config,

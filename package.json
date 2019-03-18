@@ -12,6 +12,7 @@
   "author": "Soliant Consulting",
   "license": "MIT",
   "scripts": {
+    "preversion": "build",
     "build": "webpack-cli -p"
   },
   "dependencies": {

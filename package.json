@@ -8,11 +8,19 @@
     "create-carafe-bundle": "bin/create-carafe-bundle.js",
     "extract-carafe-bundle": "bin/extract-carafe-bundle.js"
   },
+  "main": "dist/carafe-bundler.js",
   "author": "Soliant Consulting",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack-cli -p"
+  },
   "dependencies": {
     "chokidar": "^2.1.2",
     "faye-websocket": "^0.11.1",
     "slugify": "^1.3.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }

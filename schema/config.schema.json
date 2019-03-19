@@ -1,0 +1,27 @@
+{
+    "$id": "config.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": {
+        "type": "object",
+        "allOf": [
+            {
+                "properties": {
+                    "isData": {"$ref": "bundle.schema.json#/definitions/boolean"}
+                }
+            },
+            {
+                "if": {
+                    "not": {
+                        "properties": {
+                            "isData": {"enum": [true, "1"]}
+                        }
+                    }
+                },
+                "then": {
+                    "required": ["value"]
+                }
+            }
+        ]
+    }
+}

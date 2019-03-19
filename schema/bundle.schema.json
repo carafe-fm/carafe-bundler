@@ -1,0 +1,32 @@
+{
+    "$id": "bundle.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "allOf": [
+        {
+            "type": "object",
+            "properties": {
+                "data": {"$ref": "data.schema.json#"},
+                "config": {"$ref": "config.schema.json#"},
+                "preview": {"type": "string", "contentMediaType": "image/jpg", "contentEncoding": "base64"},
+                "previewName": {"type": "string", "minLength": 1},
+                "html": {"type": "string", "minLength": 1}
+            },
+            "required": [
+                "data",
+                "config",
+                "preview",
+                "previewName",
+                "html"
+            ]
+        },
+        {"$ref":  "meta.schema.json#"}
+    ],
+    "definitions": {
+        "boolean": {
+            "oneOf": [
+                {"type": "boolean"},
+                {"type": "string", "enum": ["", "1", "0"]}
+            ]
+        }
+    }
+}

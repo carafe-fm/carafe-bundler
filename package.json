@@ -1,6 +1,6 @@
 {
   "name": "@soliantconsulting/carafe-bundler",
-  "version": "0.4.0",
+  "version": "0.3.0",
   "description": "Bundler for carafe files",
   "bin": {
     "render-carafe-bundle": "bin/render-carafe-bundle.js",
@@ -13,7 +13,7 @@
   "author": "Soliant Consulting",
   "license": "MIT",
   "scripts": {
-    "preversion": "webpack-cli -p"
+    "version": "webpack-cli -p && git add dist"
   },
   "dependencies": {
     "ajv": "^6.10.0",

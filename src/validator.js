@@ -19,15 +19,15 @@ class CarafeValidator
     }
 
     validateBundle(bundle) {
-        return this.validate('bundle.schema.json', bundle);
+        return this.validate('https://carafe.fm/schema/draft-01/bundle.schema.json', bundle);
     }
 
     validateData(data) {
-        return this.validate('data.schema.json', data);
+        return this.validate('https://carafe.fm/schema/draft-01/data.schema.json', data);
     }
 
     validateMeta(meta) {
-        return this.validate('meta.schema.json', meta);
+        return this.validate('https://carafe.fm/schema/draft-01/meta.schema.json', meta);
     }
 
     validate(schema, data) {

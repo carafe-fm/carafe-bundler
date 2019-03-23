@@ -1,5 +1,5 @@
 {
-    "$id": "config.schema.json",
+    "$id": "https://carafe.fm/schema/draft-01/config.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "additionalProperties": {
@@ -7,7 +7,7 @@
         "allOf": [
             {
                 "properties": {
-                    "isData": {"$ref": "bundle.schema.json#/definitions/boolean"}
+                    "isData": {"$ref": "https://carafe.fm/schema/draft-01/bundle.schema.json#/definitions/boolean"}
                 }
             },
             {

@@ -7,7 +7,7 @@
             "properties": {
                 "data": {"$ref": "https://carafe.fm/schema/draft-01/data.schema.json#"},
                 "config": {"$ref": "https://carafe.fm/schema/draft-01/config.schema.json#"},
-                "preview": {"type": "string", "contentMediaType": "image/jpg", "contentEncoding": "base64"},
+                "preview": {"type": "string", "contentMediaType": "image/*", "contentEncoding": "base64"},
                 "previewName": {"type": "string", "minLength": 1},
                 "html": {"type": "string", "minLength": 1}
             },

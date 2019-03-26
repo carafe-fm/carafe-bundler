@@ -1,4 +1,5 @@
 {
+    "$schema" : "https://carafe.fm/schema/draft-01/bundle.schema.json#",
     "about" : "<span style=\"\" >This simple example illustrates the basics of the bundle format.</span>",
     "bookend" : "__",
     "bridgeAPIMethods" : {},

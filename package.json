@@ -13,7 +13,8 @@
   "author": "Soliant Consulting",
   "license": "MIT",
   "scripts": {
-    "version": "webpack-cli -p && git add dist"
+    "build": "webpack-cli -p",
+    "version": "npm run build && git add dist"
   },
   "dependencies": {
     "ajv": "^6.10.0",
@@ -22,6 +23,9 @@
     "slugify": "^1.3.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }

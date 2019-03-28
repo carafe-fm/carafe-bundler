@@ -7,4 +7,13 @@ module.exports = {
         filename: 'carafe-bundler.js',
         library: 'carafeBundler',
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            },
+        ],
+    },
 };

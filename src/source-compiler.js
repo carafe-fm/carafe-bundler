@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-class CarafeSourceCompiler
-{
+class CarafeSourceCompiler {
     constructor(bundleConfig, renderer) {
         this.bundleConfig = bundleConfig;
         this.renderer = renderer;
@@ -13,9 +12,10 @@ class CarafeSourceCompiler
         const config = JSON.parse(fs.readFileSync(this.bundleConfig.configFilename, 'utf8'));
         const data = JSON.parse(fs.readFileSync(this.bundleConfig.dataFilename, 'utf8'));
         const meta = JSON.parse(fs.readFileSync(this.bundleConfig.metaFilename, 'utf8'));
-        const preview = Buffer(fs.readFileSync(this.bundleConfig.previewFilename, 'utf8')).toString('base64');
+        const preview = fs.readFileSync(this.bundleConfig.previewFilename).toString('base64');
 
         const result = {
+            '$schema': "https://carafe.fm/schema/draft-01/bundle.schema.json#",
             html: template,
             preview: preview,
             previewName: path.basename(this.bundleConfig.previewFilename),
@@ -23,7 +23,7 @@ class CarafeSourceCompiler
             data: data,
         };
 
-        return Object.assign(result, meta);
+        return Object.assign(meta, result);
     }
 
     compileHtml() {
@@ -39,7 +39,7 @@ class CarafeSourceCompiler
         const meta = JSON.parse(JSON.stringify(bundle));
 
         fs.writeFileSync(this.bundleConfig.templateFilename, bundle.html);
-        fs.writeFileSync(this.bundleConfig.previewFilename, Buffer(bundle.preview, 'base64'));
+        fs.writeFileSync(this.bundleConfig.previewFilename, Buffer.from(bundle.preview, 'base64'));
         fs.writeFileSync(this.bundleConfig.configFilename, JSON.stringify(bundle.config, null, 4));
         fs.writeFileSync(this.bundleConfig.dataFilename, JSON.stringify(bundle.data, null, 4));
 

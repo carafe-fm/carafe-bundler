@@ -1,6 +1,6 @@
 {
   "name": "@soliantconsulting/carafe-bundler",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Bundler for carafe files",
   "bin": {
     "render-carafe-bundle": "bin/render-carafe-bundle.js",

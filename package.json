@@ -5,7 +5,7 @@
   "bin": {
     "render-carafe-bundle": "bin/render-carafe-bundle.js",
     "render-carafe-source": "bin/render-carafe-source.js",
-    "create-carafe-bundle": "bin/create-carafe-bundle.js",
+    "compile-carafe-bundle": "bin/compile-carafe-bundle.js",
     "extract-carafe-bundle": "bin/extract-carafe-bundle.js",
     "validate-carafe-bundle": "bin/validate-carafe-bundle.js"
   },
@@ -18,8 +18,11 @@
   },
   "dependencies": {
     "ajv": "^6.10.0",
+    "chalk": "^2.4.2",
     "chokidar": "^2.1.5",
     "faye-websocket": "^0.11.1",
+    "minimist": "^1.2.0",
+    "open": "^6.1.0",
     "slugify": "^1.3.4"
   },
   "devDependencies": {

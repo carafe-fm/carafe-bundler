@@ -9,9 +9,12 @@ class CarafeSourceCompiler {
 
     compileBundle() {
         const template = fs.readFileSync(this.bundleConfig.templateFilename, 'utf8');
-        const config = JSON.parse(fs.readFileSync(this.bundleConfig.configFilename, 'utf8'));
-        const data = JSON.parse(fs.readFileSync(this.bundleConfig.dataFilename, 'utf8'));
-        const meta = JSON.parse(fs.readFileSync(this.bundleConfig.metaFilename, 'utf8'));
+        let config = JSON.parse(fs.readFileSync(this.bundleConfig.configFilename, 'utf8'));
+        delete config.$schema;
+        let data = JSON.parse(fs.readFileSync(this.bundleConfig.dataFilename, 'utf8'));
+        delete data.$schema;
+        let meta = JSON.parse(fs.readFileSync(this.bundleConfig.metaFilename, 'utf8'));
+        delete meta.$schema;
         const preview = fs.readFileSync(this.bundleConfig.previewFilename).toString('base64');
 
         const result = {

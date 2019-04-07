@@ -1,5 +1,5 @@
 {
-    "$schema" : "https://carafe.fm/schema/draft-01/config.schema.json#",
+    "$schema": "https://carafe.fm/schema/draft-01/config.schema.json#",
     "message": {
         "category": "General Options",
         "isData": true,

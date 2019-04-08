@@ -66,7 +66,19 @@ fs.writeFileSync(outputFilename, bundle);
 
 if (args.filemaker) {
     (async () => {
-        await open('fmp://$/Carafe?script=Import%20Carafe%20Bundle&param=' + encodeURIComponent(bundle));
+        try {
+            await open('fmp://$/Carafe?script=Import%20Carafe%20Bundle&param=' + encodeURIComponent(bundle));
+        } catch (err) {
+            console.log(chalk.bgRed.bold('   Error!   '));
+            if (err.code === 'E2BIG') {
+                console.log('This Bundle is too big to push.');
+                console.log('Suggestions:')
+                console.log('  You can try making a smaller preview.jpg and/or providing less sample data.');
+                console.log('  If you can\'t make it smaller, you can use `npm run build` instead and then manually import it into Carafe.');
+            } else {
+                console.log('An unexpected error ocurred. Here is the error dump. Sorry it didn\'t work out.');
+                console.log(err);
+            }
+        }
     })();
 }
-

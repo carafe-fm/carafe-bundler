@@ -20,13 +20,13 @@ This is for two important use cases:
 1. Customizing or configuring any existing Bundle in your preferred editor or IDE
 
 ```bash
-npm init @soliantconsulting/carafe-bundle my-new-bundle
+npm init @carafe-fm/bundle my-new-bundle
 ```
 
 To work on an existing Bundle, you can initialize a new project with the appropriate project name, and then import the Bundle.
 
 ```bash
-npm init @soliantconsulting/carafe-bundle existing-bundle
+npm init @carafe-fm/bundle existing-bundle
 cd existing-bundle
 npm run import path/to/existing-bundle.json
 ```
@@ -73,7 +73,7 @@ The `renderer.render` method takes the html, bookend, config, and data bundle pr
 You can install Carafe Bundler as a devDependency in your Node project and manipulate a bundle with any of the commandline tools.
 
 ```bash
-npm install @soliantconsulting/carafe-bundler --save-dev
+npm install @carafe-fm/bundler --save-dev
 ``` 
 
 ### Validate A Carafe Bundle

@@ -1,6 +1,6 @@
 {
-  "name": "@soliantconsulting/carafe-bundler",
-  "version": "0.7.1",
+  "name": "@carafe-fm/bundler",
+  "version": "1.0.0",
   "description": "Bundler for carafe files",
   "bin": {
     "render-carafe-bundle": "bin/render-carafe-bundle.js",
@@ -31,5 +31,17 @@
     "babel-loader": "^8.0.5",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/carafe-fm/carafe-bundler.git"
+  },
+  "keywords": [
+    "FileMaker",
+    "JavaScript"
+  ],
+  "bugs": {
+    "url": "https://github.com/carafe-fm/carafe-bundler/issues"
+  },
+  "homepage": "https://github.com/carafe-fm/carafe-bundler#readme"
 }

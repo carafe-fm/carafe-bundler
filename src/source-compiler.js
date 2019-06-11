@@ -17,9 +17,11 @@ class CarafeSourceCompiler {
         delete meta.$schema;
         const preview = fs.readFileSync(this.bundleConfig.previewFilename).toString('base64');
 
+        const templateWithFiles = this.renderer.renderWatchedFiles(template, meta.bookend, this.bundleConfig.watchedFiles);
+
         const result = {
             '$schema': "https://carafe.fm/schema/draft-01/bundle.schema.json#",
-            html: template,
+            html: templateWithFiles,
             preview: preview,
             previewName: path.basename(this.bundleConfig.previewFilename),
             config: config,
@@ -34,8 +36,8 @@ class CarafeSourceCompiler {
         const config = JSON.parse(fs.readFileSync(this.bundleConfig.configFilename, 'utf8'));
         const data = JSON.parse(fs.readFileSync(this.bundleConfig.dataFilename, 'utf8'));
         const meta = JSON.parse(fs.readFileSync(this.bundleConfig.metaFilename, 'utf8'));
-
-        return this.renderer.render(template, meta.bookend, config, data);
+        const renderedTemplate = this.renderer.render(template, meta.bookend, config, data);
+        return this.renderer.renderWatchedFiles(renderedTemplate, meta.bookend, this.bundleConfig.watchedFiles);
     }
 
     extract(bundle) {

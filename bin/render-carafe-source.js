@@ -49,7 +49,9 @@ devServer.start()
             bundleConfig.configFilename,
             bundleConfig.dataFilename,
             bundleConfig.metaFilename
-        ], {
+        ].concat(
+            Object.values(bundleConfig.watchedFiles)
+        ), {
             usePolling: true,
             interval: 1000,
         });

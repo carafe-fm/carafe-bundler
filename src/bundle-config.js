@@ -8,6 +8,7 @@ class BundleConfig
         this.dataFilename = 'data.json';
         this.metaFilename = 'meta.json';
         this.previewFilename = 'preview.jpg';
+        this.watchedFiles = [];
 
         if (! fs.existsSync(workDir + '/' + 'package.json')) {
             return;
@@ -37,6 +38,10 @@ class BundleConfig
 
         if (packageConfig.carafe.previewFilename) {
             this.previewFilename = packageConfig.carafe.previewFilename;
+        }
+
+        if (packageConfig.carafe.watchedFiles) {
+            this.watchedFiles = packageConfig.carafe.watchedFiles;
         }
     }
 }

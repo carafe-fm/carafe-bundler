@@ -13,33 +13,46 @@ const open = require('open');
 const args = minimist(process.argv.slice(2), {
     default: {
         b: 'dist/Carafe_{name}_v{version}.json',
+        u: null,
+        p: false,
         f: false,
         h: false
     },
     alias: {
-        b: 'bundlepath',
-        f: 'filemaker',
+        b: 'bundlePath',
+        u: 'urlPush',
+        p: 'push',
+        f: 'forcePush',
         h: 'help'
     }
 });
 
 if (args.help) {
-    console.log(chalk.yellow('  usage:') + chalk.bold(' compile-carafe-bundle [-f] [-b ') + chalk.blue.bold('<output/path/to/new/bundle.json>') + chalk.bold(']'));
+    console.log(chalk.yellow('  usage:')
+        + chalk.bold(' compile-carafe-bundle')
+        + chalk.bold(' [-b ') + chalk.blue.bold('<output/path/to/new/bundle.json>') + chalk.bold( ']')
+        + chalk.bold(' [-p ')
+        + chalk.bold(' [-f]')
+        + chalk.bold(' [-u ') + chalk.blue.bold('<fmpurl>') + chalk.bold(']]')
+    );
     console.log('');
     console.log(chalk.yellow('  purpose:') + ' Compiles source files to a validated JSON Bundle.');
     console.log('           Optionally sends Bundle to ' + chalk.blue.bold('Carafe.fmp12') + ' if it is open on the host system.');
     console.log('');
     console.log(chalk.yellow('  configuration:') + ' Source files are loaded from the current directory by default.');
-    console.log('                 Source file paths may be customized in your ' + chalk.blue.bold('package.json') + '.');
+    console.log('                 Source file paths and push URL may be customized in your ' + chalk.blue.bold('package.json') + '.');
     console.log(chalk.yellow('  options:'));
-    console.log('    -f  Sends the compiled Bundle to Carafe.fmp12 if it is open on the host system');
-    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Overrides the default Bundle output path (' + chalk.blue('dist/Carafe-Bundle-{name}-{version}.json') + ')');
+    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Bundle path (' + chalk.blue('dist/Carafe-Bundle-{name}-{version}.json') + ')');
+    console.log('    -p  Push the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is ' + chalk.blue('false') + ')');
+    console.log('    -f  Force the push to overwrite without prompting the user (default is ' + chalk.blue('false') + ')');
+    console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for push (' + chalk.blue('fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={pushConfig}') + ')');
+    console.log('        Note: ' + chalk.blue.bold('{pushConfig}') + ' will be expanded into a JSON object with ' + chalk.blue.bold('path') + ' string and ' + chalk.blue.bold('forcePush') + ' bool properties at runtime');
     console.log('    -h  Shows this help text');
     console.log('');
     process.exit(1);
 }
 
-let outputFilename = args.bundlepath;
+let outputFilename = args.bundlePath;
 
 const bundleConfig = new BundleConfig(process.cwd());
 const sourceCompiler = new SourceCompiler(bundleConfig, new Renderer());
@@ -64,19 +77,28 @@ if (!fs.existsSync(outputDirectory)) {
 const bundle = JSON.stringify(sourceCompiler.compileBundle());
 fs.writeFileSync(outputFilename, bundle);
 
-if (args.filemaker) {
+console.log('Bundle output to ' + path.resolve(outputFilename));
+
+const pushConfig = JSON.stringify({
+    path: path.resolve(outputFilename),
+    forcePush: args.forcePush
+});
+
+// url argument takes precedent over config. See src/bundle-config.js for default config value
+let fmpPushUrl = args.urlPush ? args.urlPush : bundleConfig.pushFmpUrl;
+const url = fmpPushUrl.replace(/{pushConfig}/g, encodeURIComponent(pushConfig));
+
+if (args.push) {
+    console.log('Opening ' + url);
     (async () => {
         try {
-            await open('fmp://$/Carafe?script=Import%20Carafe%20Bundle&param=' + encodeURIComponent(bundle));
+            await open(url);
         } catch (err) {
             console.log(chalk.bgRed.bold('   Error!   '));
             if (err.code === 'E2BIG') {
-                console.log('This Bundle is too big to push.');
-                console.log('Suggestions:')
-                console.log('  You can try making a smaller preview.jpg and/or providing less sample data.');
-                console.log('  If you can\'t make it smaller, you can use `npm run build` instead and then manually import it into Carafe.');
+                console.log('This URL is too big.');
             } else {
-                console.log('An unexpected error ocurred. Here is the error dump. Sorry it didn\'t work out.');
+                console.log('An unexpected error occurred. Here is the error dump. Sorry it didn\'t work out.');
                 console.log(err);
             }
         }

@@ -162,16 +162,19 @@ compile-carafe-bundle -h
 ```
 
 ```bash
-  usage: compile-carafe-bundle [-f] [-b <output/path/to/new/bundle.json>]
+  usage: compile-carafe-bundle [-b <output/path/to/new/bundle.json>] [-p  [-f] [-u <fmpurl>]]
 
   purpose: Compiles source files to a validated JSON Bundle.
            Optionally sends Bundle to Carafe.fmp12 if it is open on the host system.
 
   configuration: Source files are loaded from the current directory by default.
-                 Source file paths may be customized in your package.json.
+                 Source file paths and push URL may be customized in your package.json.
   options:
-    -f  Sends the compiled Bundle to Carafe.fmp12 if it is open on the host system
-    -b  <argument> Overrides the default Bundle output path (dist/Carafe-Bundle-{name}-{version}.json)
+    -b  <argument> Bundle path (dist/Carafe-Bundle-{name}-{version}.json)
+    -p  Push the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
+    -f  Force the push to overwrite without prompting the user (default is false)
+    -u  <argument> URL for push (fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={pushConfig})
+        Note: {pushConfig} will be expanded into a JSON object with path string and forcePush bool properties at runtime
     -h  Shows this help text
 
 ```

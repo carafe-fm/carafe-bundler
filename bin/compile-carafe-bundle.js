@@ -13,16 +13,16 @@ const open = require('open');
 const args = minimist(process.argv.slice(2), {
     default: {
         b: 'dist/Carafe_{name}_v{version}.json',
+        s: false,
         u: null,
-        p: false,
         f: false,
         h: false
     },
     alias: {
         b: 'bundlePath',
-        u: 'urlPush',
-        p: 'push',
-        f: 'forcePush',
+        s: 'send',
+        u: 'urlSend',
+        f: 'forceSend',
         h: 'help'
     }
 });
@@ -40,13 +40,13 @@ if (args.help) {
     console.log('           Optionally sends Bundle to ' + chalk.blue.bold('Carafe.fmp12') + ' if it is open on the host system.');
     console.log('');
     console.log(chalk.yellow('  configuration:') + ' Source files are loaded from the current directory by default.');
-    console.log('                 Source file paths and push URL may be customized in your ' + chalk.blue.bold('package.json') + '.');
+    console.log('                 Source file paths and send URL may be customized in your ' + chalk.blue.bold('package.json') + '.');
     console.log(chalk.yellow('  options:'));
-    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Bundle path (' + chalk.blue('dist/Carafe-Bundle-{name}-{version}.json') + ')');
-    console.log('    -p  Push the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is ' + chalk.blue('false') + ')');
-    console.log('    -f  Force the push to overwrite without prompting the user (default is ' + chalk.blue('false') + ')');
-    console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for push (' + chalk.blue('fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={pushConfig}') + ')');
-    console.log('        Note: ' + chalk.blue.bold('{pushConfig}') + ' will be expanded into a JSON object with ' + chalk.blue.bold('path') + ' string and ' + chalk.blue.bold('forcePush') + ' bool properties at runtime');
+    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Bundle path (default is ' + chalk.blue('dist/Carafe-Bundle-{name}-{version}.json') + ')');
+    console.log('    -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is ' + chalk.blue('false') + ')');
+    console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for send (default is ' + chalk.blue('fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}') + ')');
+    console.log('        Note: ' + chalk.blue.bold('{sendConfig}') + ' will be expanded into a JSON object with ' + chalk.blue.bold('path') + ' string and ' + chalk.blue.bold('forceSend') + ' bool properties at runtime');
+    console.log('    -f  Force the send to overwrite without prompting the user (default is ' + chalk.blue('false') + ')');
     console.log('    -h  Shows this help text');
     console.log('');
     process.exit(1);
@@ -79,16 +79,16 @@ fs.writeFileSync(outputFilename, bundle);
 
 console.log('Bundle output to ' + path.resolve(outputFilename));
 
-const pushConfig = JSON.stringify({
+const sendConfig = JSON.stringify({
     path: path.resolve(outputFilename),
-    forcePush: args.forcePush
+    forceSend: args.forceSend
 });
 
 // url argument takes precedent over config. See src/bundle-config.js for default config value
-let fmpPushUrl = args.urlPush ? args.urlPush : bundleConfig.pushFmpUrl;
-const url = fmpPushUrl.replace(/{pushConfig}/g, encodeURIComponent(pushConfig));
+let fmpSendUrl = args.urlSend ? args.urlSend : bundleConfig.sendFmpUrl;
+const url = fmpSendUrl.replace(/{sendConfig}/g, encodeURIComponent(sendConfig));
 
-if (args.push) {
+if (args.send) {
     console.log('Opening ' + url);
     (async () => {
         try {

@@ -8,7 +8,7 @@ class BundleConfig
         this.dataFilename = 'data.json';
         this.metaFilename = 'meta.json';
         this.previewFilename = 'preview.jpg';
-        this.pushFmpUrl = 'fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={pushConfig}';
+        this.sendFmpUrl = 'fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}';
         this.watchedFiles = [];
 
         if (! fs.existsSync(workDir + '/' + 'package.json')) {
@@ -41,8 +41,8 @@ class BundleConfig
             this.previewFilename = packageConfig.carafe.previewFilename;
         }
 
-        if (packageConfig.carafe.pushFmpUrl) {
-            this.pushFmpUrl = packageConfig.carafe.pushFmpUrl;
+        if (packageConfig.carafe.sendFmpUrl) {
+            this.sendFmpUrl = packageConfig.carafe.sendFmpUrl;
         }
 
         if (packageConfig.carafe.watchedFiles) {

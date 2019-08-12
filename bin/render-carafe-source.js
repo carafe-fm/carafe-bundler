@@ -4,6 +4,7 @@ const Renderer = require('../src/renderer.js');
 const BundleConfig = require('../src/bundle-config.js');
 const SourceCompiler = require('../src/source-compiler.js');
 const DevServer = require('../src/dev-server');
+const SendServer = require('../src/send-server');
 const chokidar = require('chokidar');
 const minimist = require('minimist');
 const chalk = require('chalk');
@@ -11,11 +12,13 @@ const chalk = require('chalk');
 const args = minimist(process.argv.slice(2), {
     default: {
         p: 8080,
-        h: false
+        h: false,
+        f: false,
     },
     alias: {
         p: 'port',
-        f: 'filemaker',
+        s: 'send',
+        f: 'force',
         h: 'help'
     }
 });
@@ -40,6 +43,7 @@ const port = parseInt(args.port);
 const bundleConfig = new BundleConfig(process.cwd());
 const sourceCompiler = new SourceCompiler(bundleConfig, new Renderer());
 const devServer = new DevServer(sourceCompiler, port);
+const sendServer = new SendServer(sourceCompiler, port);
 devServer.start()
     .then(() => {
         console.log(chalk.yellow('Dev server running on localhost:' + port));
@@ -58,6 +62,10 @@ devServer.start()
 
         watcher.on('change', () => {
             devServer.update();
+
+            if (args.send) {
+                sendServer.sendToFileMaker(args.force);
+            }
         });
     })
     .catch(() => {

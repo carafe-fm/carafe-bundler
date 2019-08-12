@@ -153,7 +153,7 @@ render-carafe-source -h
 
 Server defaults to `localhost:8080`
 
-### Compile Source Files Into A Bundle And Optional Push to FileMaker
+### Compile Source Files Into A Bundle And Optional Send to FileMaker
 
 Compiles source files and outputs a Bundle to the specified path
 
@@ -168,13 +168,13 @@ compile-carafe-bundle -h
            Optionally sends Bundle to Carafe.fmp12 if it is open on the host system.
 
   configuration: Source files are loaded from the current directory by default.
-                 Source file paths and push URL may be customized in your package.json.
+                 Source file paths and send URL may be customized in your package.json.
   options:
     -b  <argument> Bundle path (dist/Carafe-Bundle-{name}-{version}.json)
-    -p  Push the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
+    -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
     -f  Force the push to overwrite without prompting the user (default is false)
-    -u  <argument> URL for push (fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={pushConfig})
-        Note: {pushConfig} will be expanded into a JSON object with path string and forcePush bool properties at runtime
+    -u  <argument> URL for push (fmp://$/Carafe?script=Push%20Carafe%20Bundle&param={sendConfig})
+        Note: {sendConfig} will be expanded into a JSON object with path string and forceSend bool properties at runtime
     -h  Shows this help text
 
 ```

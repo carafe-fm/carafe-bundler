@@ -63,7 +63,7 @@ async function send() {
         ? sendCommand + ' -u ' + args.urlSend
         : sendCommand;
 
-    const { stdout, stderr } = await exec( sendCommand );
+    const { stdout, stderr } = await exec(sendCommand);
     console.log('Send command', sendCommand);
     console.log(stdout);
     if (stderr) {
@@ -80,7 +80,8 @@ devServer.start()
             bundleConfig.templateFilename,
             bundleConfig.configFilename,
             bundleConfig.dataFilename,
-            bundleConfig.metaFilename
+            bundleConfig.metaFilename,
+            bundleConfig.librariesDirname
         ].concat(
             Object.values(bundleConfig.watchedFiles)
         ), {

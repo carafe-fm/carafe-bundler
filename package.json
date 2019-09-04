@@ -17,20 +17,22 @@
     "version": "npm run build && git add dist"
   },
   "dependencies": {
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.2",
+    "ajv-errors": "^1.0.1",
     "chalk": "^2.4.2",
-    "chokidar": "^2.1.5",
-    "faye-websocket": "^0.11.1",
+    "chokidar": "^2.1.8",
+    "faye-websocket": "^0.11.3",
+    "fs-extra": "^8.1.0",
     "minimist": "^1.2.0",
-    "open": "^6.1.0",
+    "open": "^6.4.0",
     "slugify": "^1.3.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "babel-loader": "^8.0.5",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0"
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   },
   "repository": {
     "type": "git",

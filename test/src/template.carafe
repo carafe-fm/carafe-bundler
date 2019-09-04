@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <script>
         function bold(targetC) {
@@ -9,7 +10,9 @@
 </head>
 
 <body onload='bold("message")'>
-<div>__title__</div>
-<div id="message">__message__</div>
+    <div>__foo__</div>
+    <div id="message">__bar__</div>
+    <pre>__baz__</pre>
 </body>
+
 </html>

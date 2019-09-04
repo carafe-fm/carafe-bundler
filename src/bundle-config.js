@@ -1,23 +1,23 @@
 const fs = require('fs');
 
-class BundleConfig
-{
+class BundleConfig {
     constructor(workDir) {
-        this.templateFilename = 'template.carafe';
-        this.configFilename = 'config.json';
-        this.dataFilename = 'data.json';
-        this.metaFilename = 'meta.json';
-        this.previewFilename = 'preview.jpg';
+        this.templateFilename = 'src/template.carafe';
+        this.configFilename = 'src/config.json';
+        this.dataFilename = 'src/data.json';
+        this.metaFilename = 'src/meta.json';
+        this.previewFilename = 'src/preview.jpg';
+        this.librariesDirname = 'src/libraries';
         this.sendFmpUrl = 'fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}';
-        this.watchedFiles = [];
+        this.watchedFiles = {};
 
-        if (! fs.existsSync(workDir + '/' + 'package.json')) {
+        if (!fs.existsSync(workDir + '/' + 'package.json')) {
             return;
         }
 
         const packageConfig = JSON.parse(fs.readFileSync(workDir + '/' + 'package.json'));
 
-        if (! packageConfig.carafe) {
+        if (!packageConfig.carafe) {
             return;
         }
 
@@ -39,6 +39,10 @@ class BundleConfig
 
         if (packageConfig.carafe.previewFilename) {
             this.previewFilename = packageConfig.carafe.previewFilename;
+        }
+
+        if (packageConfig.carafe.librariesDirname) {
+            this.librariesDirname = packageConfig.carafe.librariesDirname;
         }
 
         if (packageConfig.carafe.sendFmpUrl) {

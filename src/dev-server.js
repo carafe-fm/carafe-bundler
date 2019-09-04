@@ -5,8 +5,7 @@ const WebSocket = require('faye-websocket');
 
 const hotReloadCode = fs.readFileSync(path.join(__dirname, 'hot-reload.html'), 'utf-8');
 
-class DevServer
-{
+class DevServer {
     constructor(sourceCompiler, port) {
         this.sourceCompiler = sourceCompiler;
         this.port = port;
@@ -32,7 +31,7 @@ class DevServer
             });
 
             this.server.addListener('upgrade', (request, socket, head) => {
-                if (! WebSocket.isWebSocket(request)) {
+                if (!WebSocket.isWebSocket(request)) {
                     return;
                 }
 

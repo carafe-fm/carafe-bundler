@@ -1,6 +1,6 @@
 <script type="text/javascript">
     if ('WebSocket' in window) {
-        (function() {
+        (function () {
             var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
             var address = protocol + window.location.host + window.location.pathname + '/ws';
             var socket = new WebSocket(address);

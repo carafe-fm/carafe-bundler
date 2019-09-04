@@ -1,32 +1,41 @@
 {
-    "$id": "https://carafe.fm/schema/draft-01/bundle.schema.json",
+    "$id": "https://carafe.fm/schema/draft-02/bundle.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "allOf": [
         {
             "type": "object",
             "properties": {
-                "data": {"$ref": "https://carafe.fm/schema/draft-01/data.schema.json#"},
-                "config": {"$ref": "https://carafe.fm/schema/draft-01/config.schema.json#"},
-                "preview": {"type": "string", "contentMediaType": "image/*", "contentEncoding": "base64"},
-                "previewName": {"type": "string", "minLength": 1},
-                "html": {"type": "string", "minLength": 1}
+                "config": {
+                    "$ref": "https://carafe.fm/schema/draft-02/config.schema.json#"
+                },
+                "data": {
+                    "$ref": "https://carafe.fm/schema/draft-02/data.schema.json#"
+                },
+                "libraries": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "preview": {
+                    "type": "string",
+                    "contentMediaType": "image/*",
+                    "contentEncoding": "base64",
+                    "errorMessage": "preview.jpg or preview.png is required"
+                },
+                "template": {
+                    "type": "string",
+                    "minLength": 1,
+                    "errorMessage": "template is required and must not be empty"
+                }
             },
             "required": [
-                "data",
                 "config",
+                "data",
                 "preview",
-                "previewName",
-                "html"
+                "template"
             ]
         },
-        {"$ref":  "https://carafe.fm/schema/draft-01/meta.schema.json#"}
-    ],
-    "definitions": {
-        "boolean": {
-            "oneOf": [
-                {"type": "boolean"},
-                {"type": "string", "enum": ["", "1", "0"]}
-            ]
+        {
+            "$ref": "https://carafe.fm/schema/draft-02/meta.schema.json#"
         }
-    }
+    ]
 }

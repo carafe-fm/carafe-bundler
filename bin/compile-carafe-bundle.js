@@ -30,7 +30,7 @@ const args = minimist(process.argv.slice(2), {
 if (args.help) {
     console.log(chalk.yellow('  usage:')
         + chalk.bold(' compile-carafe-bundle')
-        + chalk.bold(' [-b ') + chalk.blue.bold('<output/path/to/new/bundle.json>') + chalk.bold( ']')
+        + chalk.bold(' [-b ') + chalk.blue.bold('<output/path/to/new/bundle.json>') + chalk.bold(']')
         + chalk.bold(' [-p ')
         + chalk.bold(' [-f]')
         + chalk.bold(' [-u ') + chalk.blue.bold('<fmpurl>') + chalk.bold(']]')
@@ -63,7 +63,7 @@ const slugifyOptions = {
     remove: /[^\w\s_\-]/g,
     lower: false,
 };
-slugify.extend({'.': '-'});
+slugify.extend({ '.': '-' });
 
 outputFilename = outputFilename.replace(/{name}/g, slugify(meta.name, slugifyOptions));
 outputFilename = outputFilename.replace(/{version}/g, slugify(meta.version, slugifyOptions));
@@ -71,7 +71,7 @@ outputFilename = outputFilename.replace(/{version}/g, slugify(meta.version, slug
 const outputDirectory = path.dirname(path.resolve(outputFilename));
 
 if (!fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(outputDirectory, {recursive: true});
+    fs.mkdirSync(outputDirectory, { recursive: true });
 }
 
 const bundle = JSON.stringify(sourceCompiler.compileBundle());

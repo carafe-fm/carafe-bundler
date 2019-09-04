@@ -1,16 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
-class CarafeRenderer
-{
-    render(template, delimiter, config, data) {
+class CarafeRenderer {
+    render(template, delimiter, config, data, libraries) {
         let result = template;
 
         Object.keys(config).forEach(name => {
             let value = '';
 
-            if (! config[name].isData) {
+            if (config[name].source === 'config') {
                 value = config[name].value;
+            } else if (config[name].source === 'libraries') {
+                value = libraries[name];
             } else {
                 value = data[name];
             }

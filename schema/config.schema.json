@@ -1,25 +1,124 @@
 {
-    "$id": "https://carafe.fm/schema/draft-01/config.schema.json",
+    "$id": "https://carafe.fm/schema/draft-02/config.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "additionalProperties": {
         "type": "object",
+        "errorMessage": {
+            "required": "must have properties source and type"
+        },
         "allOf": [
             {
                 "properties": {
-                    "isData": {"$ref": "https://carafe.fm/schema/draft-01/bundle.schema.json#/definitions/boolean"}
-                }
+                    "source": {
+                        "enum": [
+                            "config",
+                            "data",
+                            "libraries"
+                        ]
+                    },
+                    "type": {
+                        "enum": [
+                            "boolean",
+                            "jsonArray",
+                            "jsonObject",
+                            "number",
+                            "text",
+                            "largeText",
+                            "cssSnippet",
+                            "htmlSnippet",
+                            "jsSnippet",
+                            "color",
+                            "padding",
+                            "textAlign",
+                            "verticalAlign",
+                            "fmpFileName",
+                            "fmpScriptName",
+                            "dropdown",
+                            "popup"
+                        ]
+                    },
+                    "value": {
+                        "type": ["number", "integer", "array", "object", "boolean", "string"],
+                        "errorMessage": "non-null value is required when 'source' is config"
+                    },
+                    "path": {
+                        "type": "string",
+                        "pattern": "^(/[^/ ]*)+/?$",
+                        "errorMessage": "relative file path with a leading slash; required when 'source' is libraries"
+                    },
+                    "help": {
+                        "type": "string",
+                        "errorMessage": "optional explainer for the implementor"
+                    },
+                    "category": {
+                        "type": "string",
+                        "errorMessage": "optional"
+                    },
+                    "label": {
+                        "type": "string",
+                        "errorMessage": "optional"
+                    },
+                    "sort": {
+                        "type": "number",
+                        "errorMessage": "optional"
+                    },
+                    "possibleValues": {
+                        "type": "array",
+                        "errorMessage": "required when 'type' is dropdown or popup"
+                    }
+                },
+                "required": [
+                    "source",
+                    "type"
+                ]
             },
             {
+                "errorMessage": "'source' is config so must have a 'value'",
                 "if": {
-                    "not": {
-                        "properties": {
-                            "isData": {"enum": [true, "1"]}
+                    "properties": {
+                        "source": {
+                            "const": "config"
                         }
                     }
                 },
                 "then": {
-                    "required": ["value"]
+                    "required": [
+                        "value"
+                    ]
+                }
+            },
+            {
+                "errorMessage": "'source' is libraries so must have a 'path'",
+                "if": {
+                    "properties": {
+                        "source": {
+                            "const": "libraries"
+                        }
+                    }
+                },
+                "then": {
+                    "required": [
+                        "path"
+                    ]
+                }
+            },
+            {
+                "errorMessage": "'type' is dropdown or popup so must have a 'possibleValues'",
+                "if": {
+                    "properties": {
+                        "type": {
+                            "enum": [
+                                "dropdown",
+                                "popup"
+                            ]
+                        }
+                    }
+                },
+                "then": {
+                    "required": [
+                        "possibleValues"
+                    ]
                 }
             }
         ]

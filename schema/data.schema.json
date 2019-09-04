@@ -1,5 +1,5 @@
 {
-    "$id": "https://carafe.fm/schema/draft-01/data.schema.json",
+    "$id": "https://carafe.fm/schema/draft-02/data.schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "additionalProperties": true

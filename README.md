@@ -20,7 +20,7 @@ This is for two important use cases:
 1. Customizing or configuring any existing Bundle in your preferred editor or IDE
 
 ```bash
-npm init @carafe-fm/bundle my-new-bundle
+npm init @carafe-fm/bundle
 ```
 
 To work on an existing Bundle, you can initialize a new project with the appropriate project name, and then import the Bundle.
@@ -165,7 +165,7 @@ compile-carafe-bundle -h
 ```
 
 ```bash
-  usage: compile-carafe-bundle [-b <output/path/to/new/bundle.json>] [-p  [-f] [-u <fmpurl>]]
+  usage: compile-carafe-bundle [-b <output/path/to/new/bundle.json>] [-s  [-f] [-u <fmpurl>]]
 
   purpose: Compiles source files to a validated JSON Bundle.
            Optionally sends Bundle to Carafe.fmp12 if it is open on the host system.

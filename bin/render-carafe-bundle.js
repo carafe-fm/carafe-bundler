@@ -41,13 +41,14 @@ const html = renderer.render(
     bundle.html,
     bundle.bookend,
     bundle.config,
-    bundle.data
+    bundle.data,
+    bundle.libraries
 );
 
 const outputDirectory = path.dirname(path.resolve(outputFilename));
 
-if (! fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(outputDirectory, {recursive: true});
+if (!fs.existsSync(outputDirectory)) {
+    fs.mkdirSync(outputDirectory, { recursive: true });
 }
 
 fs.writeFileSync(outputFilename, html);

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Sans-Serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>About Working With This Bundle</h2>
+        <div id="about">CarafeBundle::BundleAbout</div>
+        <div id="references"></div>
+    </main>
+    <script>
+        // var references = null;
+        var references = { "foo": "https://carafe.fm", "bar": "https://soliantconsulting.com" };
+    </script>
+    <script>
+        (function () {
+
+            function makeA(href, linkText, titleText) {
+                var a = document.createElement('a');
+                var linkTextElement = document.createTextNode(linkText);
+                a.appendChild(linkTextElement);
+                a.title = titleText;
+                a.href = href;
+                a.target = '_blank';
+                return a;
+            }
+
+            function makeUL(array) {
+                var list = document.createElement('ul');
+                for (var reference in references) {
+                    var item = document.createElement('li');
+                    var key = reference;
+                    var value = references[reference];
+                    item.appendChild(makeA(value, key, value));
+                    list.appendChild(item);
+                }
+                return list;
+            }
+
+            if (references !== '' && Object.getOwnPropertyNames(references).length > 0) {
+
+                var h3 = document.createElement('h3');
+                h3.appendChild(document.createTextNode('References'));
+
+                document.getElementById('references').appendChild(h3);
+                document.getElementById('references').appendChild(makeUL(references));
+            }
+        })();
+    </script>
+</body>
+
+</html>

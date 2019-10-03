@@ -5,54 +5,66 @@
     "properties": {
         "about": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "errorMessage": "a simple html explainer providing instructions for bundle implementors"
         },
         "bookend": {
             "type": "string",
-            "minLength": 2
+            "minLength": 2,
+            "errorMessage": "a character sequence used before and after each merge field name as delimiters in the template"
         },
         "jsApiMethods": {
             "type": "object",
             "additionalProperties": {
                 "type": "object",
                 "properties": {
-                    "callback": {
-                        "type": "boolean"
+                    "about": {
+                        "type": "string",
+                        "errorMessage": "a simple text explainer providing instructions for bundle implementors"
                     },
-                    "description": {
-                        "type": "string"
+                    "parameters": {
+                        "type": "array",
+                        "errorMessage": "an array defining zero or more parameter names for the method"
                     }
                 },
                 "required": [
-                    "callback",
-                    "description"
-                ]
+                    "about",
+                    "parameters"
+                ],
+                "errorMessage": "each optional jsApiMethod must specify about and parameters object"
             }
         },
         "category": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "errorMessage": "may be any string but please consider one of the standard options:Analysis,Calendar,Chart,Data Presentation,Date,Development,Hierarchy,Image Viewer,Map,Pivot,Progress Bar,Slider,Table,Text,Time,Tree,UI,Utiliy"
         },
         "creator": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "errorMessage": "the bundle creator"
         },
         "creatorAcknowlegements": {
-            "type": "string"
+            "type": "string",
+            "errorMessage": "an optional plain text acknowlegement of contributors, etc. by the bundle creator"
         },
         "parentBundle": {
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 1,
+                    "errorMessage": "the parent bundle name"
                 },
                 "version": {
                     "type": "string",
                     "pattern": "^((\\d+)\\.(\\d+)\\.(\\d+)?)$",
-                    "errorMessage": "must be MAJOR.MINOR.PATCH semver format"
+                    "errorMessage": "parent bundle version must be MAJOR.MINOR.PATCH semver format"
                 },
                 "creator": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 1,
+                    "errorMessage": "the parent bundle creator"
                 }
             },
             "required": [
@@ -63,7 +75,8 @@
         },
         "description": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "errorMessage": "a plain text description of the bundle"
         },
         "id": {
             "type": "string",
@@ -72,10 +85,12 @@
         },
         "name": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "errorMessage": "the bundle name"
         },
         "offlineCompatible": {
-            "type": "boolean"
+            "type": "boolean",
+            "errorMessage": "boolean value indicating if the bundle creator has included any online dependencies"
         },
         "previewType": {
             "type": "string",
@@ -107,16 +122,20 @@
         "version": {
             "type": "string",
             "pattern": "^((\\d+)\\.(\\d+)\\.(\\d+)?)$",
-            "errorMessage": "must be MAJOR.MINOR.PATCH semver format"
+            "errorMessage": "bundle version must be in MAJOR.MINOR.PATCH semver format"
         },
         "windowsTested": {
-            "type": "boolean"
+            "type": "boolean",
+            "errorMessage": "boolean value indicating if the bundle creator has tested Windows compatibility"
+        },
+        "minimumFileMakerVersion": {
+            "type": "number",
+            "errorMessage": "if included the minimum FileMaker version must be a number"
         }
     },
     "required": [
         "about",
         "bookend",
-        "jsApiMethods",
         "category",
         "creator",
         "description",

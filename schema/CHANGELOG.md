@@ -4,13 +4,14 @@
 
 * Rename `html` -> `template`
 * Rename `offlineCompatibile` -> `offlineCompatible`
-* Rename `bridgeAPIMethods` -> `jsApiMethods`
+* Rename and refactor `bridgeAPIMethods` -> `jsApiMethods`
 * Refactor `isData` -> `source`
 * Refactor `previewName` -> `previewType`
 * Add `creatorAcknowlegements`
 * Add `parentBundle`
 * Add `libraries`
 * Add `urlLocation`
+* Add `minimumFileMakerVersion`
 * Add `config.type`
 * Add `config.value`
 * Add `config.path`

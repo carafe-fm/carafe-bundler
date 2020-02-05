@@ -7,12 +7,12 @@
             theDiv.innerHTML = '<b>' + theDiv.innerHTML + '</b>';
         }
     </script>
+    <script>__baz__</script>
 </head>
 
 <body onload='bold("message")'>
     <div>__foo__</div>
     <div id="message">__bar__</div>
-    <pre>__baz__</pre>
 </body>
 
 </html>

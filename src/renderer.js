@@ -6,6 +6,10 @@ class CarafeRenderer {
         let result = template;
 
         Object.keys(config).forEach(name => {
+            if (name === '$schema') {
+                return;
+            }
+
             let value = '';
 
             if (config[name].source === 'config') {
@@ -19,6 +23,7 @@ class CarafeRenderer {
             switch (typeof value) {
                 case 'object':
                     value = JSON.stringify(value);
+                    break;
 
                 default:
                     value = String(value);
@@ -27,7 +32,7 @@ class CarafeRenderer {
             const variableName = String(delimiter + name + delimiter).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
             result = result.replace(
                 new RegExp(variableName, 'g'),
-                value
+                () => value
             );
         });
 
@@ -44,7 +49,7 @@ class CarafeRenderer {
             const variableName = String(delimiter + fileName + delimiter).replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
             result = result.replace(
                 new RegExp(variableName, 'g'),
-                source
+                () => source
             );
         }
 

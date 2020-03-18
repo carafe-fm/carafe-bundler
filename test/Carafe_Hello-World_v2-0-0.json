@@ -4,18 +4,20 @@
     "bookend": "__",
     "jsApiMethods": {
         "foo": {
-            "callback": true,
-            "description": "Yadda yadda",
-            "param1": "",
-            "param2": [],
-            "param3": {}
+            "about": "Yadda yadda",
+            "parameters": [
+                "param1",
+                "param2",
+                "param3"
+            ]
         },
         "bar": {
-            "callback": false,
-            "description": "Yadda yadda yadda",
-            "foo": "",
-            "bar": [],
-            "baz": {}
+            "about": "Yadda yadda yadda",
+            "parameters": [
+                "foo",
+                "bar",
+                "baz"
+            ]
         }
     },
     "category": "Development",

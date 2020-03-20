@@ -104,7 +104,7 @@
         // https://stackoverflow.com/a/9609450
         var decodeEntities = (function () { var element = document.createElement('div'); function decodeHTMLEntities(str) {if (str && typeof str === 'string') {str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');element.innerHTML = str;str = element.textContent;element.textContent = '';}return str;}return decodeHTMLEntities;})();
         // decode it here to make it useable as if it was loaded normally
-        theJson.html = decodeEntities(theJson.template);
+        theJson.template = decodeEntities(theJson.template);
     </script>
 </head>
 <body>
@@ -140,7 +140,7 @@
      */
     var renderer = new carafeBundler.default.CarafeRenderer();
     var iframeDocument = document.querySelector('#theiframe').contentWindow.document;
-    var content = renderer.render(theJson.html, theJson.bookend, theJson.config, theJson.data, theJson.libraries);
+    var content = renderer.render(theJson.template, theJson.bookend, theJson.config, theJson.data, theJson.libraries);
     iframeDocument.open('text/html', 'replace');
     iframeDocument.write(content);
     iframeDocument.close();

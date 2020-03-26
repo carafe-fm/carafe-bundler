@@ -7,12 +7,16 @@
             theDiv.innerHTML = '<b>' + theDiv.innerHTML + '</b>';
         }
     </script>
-    <script>__baz__</script>
+    <style>
+        __theCss__
+
+    </style>
 </head>
 
 <body onload='bold("message")'>
-    <div>__foo__</div>
-    <div id="message">__bar__</div>
+    <div class="bg-primary">__title__</div>
+    <div class="bg-danger" id="message">__message__</div>
+    <div id="droid">__thefile__</div>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ const open = require('open');
 
 const args = minimist(process.argv.slice(2), {
     default: {
-        b: 'dist/Carafe_{name}_v{version}.json',
+        b: 'dist/{name}-{version}-{creator}.carafe-draft-02.json',
         s: false,
         u: null,
         f: false,
@@ -42,7 +42,7 @@ if (args.help) {
     console.log(chalk.yellow('  configuration:') + ' Source files are loaded from the current directory by default.');
     console.log('                 Source file paths and send URL may be customized in your ' + chalk.blue.bold('package.json') + '.');
     console.log(chalk.yellow('  options:'));
-    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Bundle path (default is ' + chalk.blue('dist/Carafe-Bundle-{name}-{version}.json') + ')');
+    console.log('    -b  ' + chalk.blue.bold('<argument>') + ' Bundle path (default is ' + chalk.blue('dist/{name}-{version}-{creator}.carafe-draft-02.json') + ')');
     console.log('    -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is ' + chalk.blue('false') + ')');
     console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for send (default is ' + chalk.blue('fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}') + ')');
     console.log('        Note: ' + chalk.blue.bold('{sendConfig}') + ' will be expanded into a JSON object with ' + chalk.blue.bold('path') + ' string and ' + chalk.blue.bold('forceSend') + ' bool properties at runtime');
@@ -65,8 +65,9 @@ const slugifyOptions = {
 };
 slugify.extend({ '.': '-' });
 
-outputFilename = outputFilename.replace(/{name}/g, slugify(meta.name, slugifyOptions));
-outputFilename = outputFilename.replace(/{version}/g, slugify(meta.version, slugifyOptions));
+outputFilename = outputFilename.replace(/{name}/g, slugify(meta.name, slugifyOptions)).toLowerCase();
+outputFilename = outputFilename.replace(/{version}/g, slugify(meta.version, slugifyOptions)).toLowerCase();
+outputFilename = outputFilename.replace(/{creator}/g, slugify(meta.creator, slugifyOptions)).toLowerCase();
 
 const outputDirectory = path.dirname(path.resolve(outputFilename));
 

@@ -1,0 +1,67 @@
+{
+    "$schema": "https://carafe.fm/schema/draft-02/meta.schema.json#",
+    "about": "<span style=\"\" >This simple example illustrates the basics of the bundle format.</span>",
+    "bookend": "__",
+    "jsApiMethods": {
+        "foo": {
+            "about": "Yadda yadda",
+            "parameters": [
+                "param1",
+                "param2",
+                "param3"
+            ]
+        },
+        "bar": {
+            "about": "Yadda yadda yadda",
+            "parameters": [
+                "foo",
+                "bar",
+                "baz"
+            ]
+        }
+    },
+    "category": "Development",
+    "creator": "Jeremiah Small",
+    "creatorAcknowlegements" : "A big thanks to my dog.",
+    "description": "A very simple starter bundle.",
+    "id": "8E6B9DF4-A4FA-40E1-80EB-5D6158B834C3",
+    "minimumFileMakerVersion" : 19,
+    "name": "Hello World",
+    "offlineCompatible": true,
+    "parentBundle" : 
+	{
+		"creator" : "Soliant Consulting",
+		"name" : "Hello World",
+		"version" : "2.0.0"
+	},
+    "references": {
+        "Carafe.FM": "https://carafe.fm",
+        "Carafe Documentation": "https://carafe.readthedocs.io/en/latest/"
+    },
+    "urlLocation" : "https://carafe.fm/bundle/jsmall-hello-world-2-1-0/",
+    "vendors" : 
+	{
+		"carafe" : 
+		{
+			"$schema" : "https://carafe.fm/schema/draft-02/carafe-fmp12.schema.json#",
+			"importedTimeLocal" : "8/13/2019 12:35:47 PM",
+			"importedTimeUTC" : "8/13/2019 7:35:47.303 PM"
+		},
+		"fusionReactor" : 
+		{
+			"liklihood" : "It could happen"
+		},
+		"widgetStudio" : 
+		{
+			"$schema" : "https://widgetstudio.io/schema/draft-02/ws.schema.json#",
+			"dataMerge" : "Full Merge",
+			"deployWarning" : "",
+			"hashLoad" : true,
+			"indexLocation" : "",
+			"returnedData" : "",
+			"urlLocation" : "https://widgetstudio.io/bundle/etc/ect"
+		}
+	},
+    "version": "2.1.0",
+    "windowsTested": true
+}

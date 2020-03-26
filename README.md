@@ -173,7 +173,7 @@ compile-carafe-bundle -h
   configuration: Source files are loaded from the current directory by default.
                  Source file paths and send URL may be customized in your package.json.
   options:
-    -b  <argument> Bundle path (default is dist/Carafe-Bundle-{name}-{version}.json)
+    -b  <argument> Bundle path (default is dist/{name}-{version}-{creator}.carafe-draft-02.json)
     -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
     -u  <argument> URL for send (default is fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig})
         Note: {sendConfig} will be expanded into a JSON object with path string and forceSend bool properties at runtime

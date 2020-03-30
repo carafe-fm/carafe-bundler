@@ -1,6 +1,6 @@
 {
-  "name": "@carafe-fm/bundler-dev",
-  "version": "3.0.0-alpha.4",
+  "name": "@carafe-fm/bundler",
+  "version": "3.0.0",
   "description": "Bundler for carafe files",
   "bin": {
     "render-carafe-bundle": "bin/render-carafe-bundle.js",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/jeremiahsmall/carafe-bundler.git"
+    "url": "git+ssh://git@github.com/carafe-fm/carafe-bundler.git"
   },
   "keywords": [
     "FileMaker",

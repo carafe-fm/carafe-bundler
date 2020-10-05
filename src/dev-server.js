@@ -13,11 +13,21 @@ class DevServer {
         this.generateHtml();
     }
 
+    replaceLastOccurrence(find, replace, string) {
+        var lastIndex = string.toLowerCase().lastIndexOf(find.toLowerCase());
+        
+        if (lastIndex === -1) {
+            return string;
+        }
+        
+        var beginString = string.substring(0, lastIndex);
+        var endString = string.substring(lastIndex + find.length);
+        
+        return beginString + replace + endString;
+    }
+
     generateHtml() {
-        this.html = this.sourceCompiler.compileHtml().replace(
-            /<\/body>/i,
-            hotReloadCode + '</body>',
-        );
+        this.html = this.replaceLastOccurrence('</body>', hotReloadCode + '</body>', this.sourceCompiler.compileHtml())
     }
 
     start() {

@@ -8,7 +8,7 @@ class BundleConfig {
         this.metaFilename = 'src/meta.json';
         this.previewFilename = 'src/preview.jpg';
         this.librariesDirname = 'src/libraries';
-        this.sendFmpUrl = 'fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}';
+        this.sendFmpUrl = 'fmp://$/Carafe%20Kitchen?script=Send%20Carafe%20Bundle&param={sendConfig}';
         this.watchedFiles = {};
 
         if (!fs.existsSync(workDir + '/' + 'package.json')) {

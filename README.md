@@ -148,7 +148,7 @@ render-carafe-source -h
   options:
     -p  <argument> Overrides the default localhost port (default is 8080)
     -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
-    -u  <argument> URL for send (default is fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig})
+    -u  <argument> URL for send (default is fmp://$/Carafe%20Kitchen?script=Send%20Carafe%20Bundle&param={sendConfig})
         Note: {sendConfig} will be expanded into a JSON object with path string and forceSend bool properties at runtime
     -f  Force the send to overwrite without prompting the user (default is false)
     -h  Shows this help text
@@ -175,7 +175,7 @@ compile-carafe-bundle -h
   options:
     -b  <argument> Bundle path (default is dist/{name}-{version}-{creator}.carafe-draft-02.json)
     -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is false)
-    -u  <argument> URL for send (default is fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig})
+    -u  <argument> URL for send (default is fmp://$/Carafe%20Kitchen?script=Send%20Carafe%20Bundle&param={sendConfig})
         Note: {sendConfig} will be expanded into a JSON object with path string and forceSend bool properties at runtime
     -f  Force the send to overwrite without prompting the user (default is false)
     -h  Shows this help text

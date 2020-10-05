@@ -36,7 +36,7 @@ if (args.help) {
     console.log(chalk.yellow('  options:'));
     console.log('    -p  ' + chalk.blue.bold('<argument>') + ' Overrides the default localhost port (default is ' + chalk.blue('8080') + ')');
     console.log('    -s  Send the compiled Bundle to Carafe.fmp12 if it is open on the host system (default is ' + chalk.blue('false') + ')');
-    console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for send (default is ' + chalk.blue('fmp://$/Carafe?script=Send%20Carafe%20Bundle&param={sendConfig}') + ')');
+    console.log('    -u  ' + chalk.blue.bold('<argument>') + ' URL for send (default is ' + chalk.blue('fmp://$/Carafe%20Kitchen?script=Send%20Carafe%20Bundle&param={sendConfig}') + ')');
     console.log('        Note: ' + chalk.blue.bold('{sendConfig}') + ' will be expanded into a JSON object with ' + chalk.blue.bold('path') + ' string and ' + chalk.blue.bold('forceSend') + ' bool properties at runtime');
     console.log('    -f  Force the send to overwrite without prompting the user (default is ' + chalk.blue('false') + ')');
     console.log('    -h  Shows this help text');
